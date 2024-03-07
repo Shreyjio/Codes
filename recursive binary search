@@ -1,0 +1,65 @@
+#include<iostream>
+using namespace std;
+
+int RbinarySearch(int arr[],int lb,int ub,int count, int key)
+{
+    if(lb==ub)
+    {
+        count++;
+        if(arr[lb]==key)
+        {
+            cout<<"total no. of comparison :"<<count<<endl;
+            cout<<"searching element at position : ";
+            return lb+1;
+        }
+        else
+        {
+            cout<<"total no. of comparison :"<<count<<endl;
+            cout<<"searching element is not presented in array :";
+            return -1;
+        }
+    }
+    else
+    {
+            count++;
+            int mid=lb+(ub-lb)/2;
+            if(arr[mid]==key)
+            {
+                cout<<"total no. of comparison :"<<count<<endl;
+                cout<<"searching element at position : ";
+                return mid+1;
+            }
+            else if(arr[mid]>key)
+            {
+                return RbinarySearch(arr,lb,mid-1,count,key);
+            } 
+            else
+            {
+                return RbinarySearch(arr,mid+1,ub,count,key);
+            }
+    }
+}
+
+int main()
+{
+    int n;
+    cout<<"enter the no. of elements"<<endl;
+    cin>>n;
+
+    int arr[n];
+    cout<<"enter the elements in array"<<endl;
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+
+    int lb=0;
+    int ub=n-1;
+    int count=0;
+    int key;
+    cout<<"enter the seraching element u wanna search"<<endl;
+    cin>>key;
+
+    cout<<RbinarySearch(arr,lb,ub,count,key);
+    return 0;
+}
