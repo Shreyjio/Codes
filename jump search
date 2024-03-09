@@ -1,0 +1,55 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+int jumpSearch(int arr[],int n,int key)
+{
+    int lb=0;
+    int ub=sqrt(n);
+    int count=0;
+    
+    while(lb<n && arr[ub-1]<key)
+        {
+            lb=ub;
+            ub=ub+sqrt(n);
+            count++;
+            if(ub>n-1)
+            {
+                ub=n;
+            }
+        }
+        for(int i=lb;i<ub;i++)
+        {
+            count++;
+            if(arr[i]==key)
+            {
+                cout<<"total no. of comparison :"<<count<<endl;
+                cout<<"searching key present at position :";
+                return i+1;
+            }
+        }
+    cout<<"total no. of comparison :"<<count<<endl;    
+    cout<<"searching element is not present in array"<<endl;
+    return -1;
+}
+
+int main()
+{
+    int n;
+    cout<<"no. of elements in array"<<endl;
+    cin>>n;
+
+    int arr[n];
+    cout<<"enter the elements"<<endl;
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+
+    int key;
+    cout<<"enter the searching element"<<endl;
+    cin>>key;
+
+    cout<<jumpSearch(arr,n,key);
+    return 0;
+}
