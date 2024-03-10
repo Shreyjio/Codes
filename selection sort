@@ -1,0 +1,67 @@
+#include<iostream>
+using namespace std;
+
+void selectionSort(int n, int arr[])
+{
+    int count=0;
+    int swaps=0;
+    for(int i=0;i<n-1;i++)
+    {
+        int min =i;
+        int j=i+1;
+        for(int k=0;k<n;k++)
+        {
+        
+            while(j<n&&arr[min]>=arr[j])
+            {
+                
+                min=j;
+                count++;
+                j++;
+            }
+            
+            if(j>=n)
+            {
+                break;
+            }
+            count++;
+            j++;
+        }
+        
+        if(min!=i)
+        {
+            swaps++;
+            int key=arr[min];
+            arr[min]=arr[i];
+            arr[i]=key;
+        }
+        else
+        {
+            swaps++;
+        }
+    }
+    cout<<"sorted array"<<endl;
+    for(int i=0;i<n;i++)
+    {
+        cout<<arr[i]<<"\t";
+    }
+    cout<<endl;
+    cout<<"total no. of comparisons :"<<count<<endl;
+    cout<<"total no. of swaps : "<<swaps<<endl;
+}
+
+int main()
+{
+    int n;
+    cout<<"enter the no. of elements"<<endl;
+    cin>>n;
+    int arr[n];
+    cout<<"enter the elements"<<endl;
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    selectionSort(n,arr);
+    return 0;
+}
+
