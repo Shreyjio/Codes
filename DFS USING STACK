@@ -1,0 +1,52 @@
+/*D F S TREVERSAL USING STACK IN GRAPH*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void dfs(vector<vector<int>> & adjlist,vector<bool> & visited, int startnode)
+{
+    stack<int> s;;
+    visited[startnode]=true;
+    s.push(startnode);
+
+    while(s.empty()!=true)
+    {
+        int currentnode=s.top();
+        cout<<currentnode<<" ";
+        s.pop();
+
+        for(int neighbour : adjlist[currentnode])
+        {
+            if(visited[neighbour]!=true)
+            {
+                visited[neighbour]=true;
+                s.push(neighbour);
+            }
+        }
+    }
+}
+void addedges(vector<vector<int>> & adjlist,int u,int v)
+{
+    adjlist[u].push_back(v);
+}
+int main()
+{
+    int vertices, edges;
+    cout<<"enter vertices and edges"<<endl;
+    cin>>vertices>>edges;
+
+    vector<vector<int>> adjlist(vertices);
+    cout<<"enter the value of u and v"<<endl;
+    for(int i=0;i<edges;i++)
+    {
+        int u,v;
+        cin>>u>>v;
+        addedges(adjlist , u ,v);
+    }
+    vector<bool> visited(vertices,false);
+    int startnode;
+    cout<<"starting vertices"<<endl;
+    cin>>startnode;
+
+    dfs(adjlist,visited,startnode);
+}
